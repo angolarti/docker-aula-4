@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  microsservico-checkout:
+    image: angolar/checkout-ms:latest 
+    ports:
+      - 9090:9090
+  
+  microsservico-pagamento:
+    image: angolar/pagamento-ms:latest
+    ports:
+      - 9091:9091
+  
+  microsservico-cupom:
+    image: angolar/coupon-ms:latest
+    ports:
+      - 9092:9092
+  
+  microsservico-avalista:
+    image: angolar/avalista-ms:latest 
+    ports:
+      - 9093:9093
+  
+  rebbit:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COKKIE: "SWQQKDDSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
